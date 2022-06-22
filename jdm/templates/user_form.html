@@ -1,0 +1,28 @@
+<title>JDM - Sing up</title>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+    <style>
+        .user_form {
+            width: 600px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 3px solid #231F20;
+            background-color: #BCBEC0;
+            border-radius: 5px;
+            padding: 0 50px;
+            margin-bottom: 50px;}
+    </style>
+
+    <div class="wrapper">
+        <form class="user_form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ register_form | crispy }}
+            <button class="btn" type="submit">Подтвердить</button>
+        </form>
+    </div>
+
+{% endblock %}

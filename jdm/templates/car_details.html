@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+    <style>
+        .com_form {
+            width: 400px;
+            height: 400px;
+            margin: 0 0 0 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            box-sizing: border-box;
+            border: 3px solid #231F20;
+            align-items: center;
+            border-radius: 5px;
+            background-color: #BCBEC0;}
+    </style>
+
+    <div class="car">
+        <p class="com">{{ car.created }} {{ car.brand }} {{ car.model }} ({{ car.engine_name }}) {% if request.user.is_staff or request.user.is_superuser %}<a class="icon" href="{% url 'edit_car' car.id %}"><i class="fa-light fa-pen-to-square"></i></a> <a class="com" href="{% url 'car_delete' car.id %}"><i class="fa-light fa-trash-can"></i></a>{% endif %}</p>
+        <div class="tino">
+            <img class="image" src="{{ car.photo1|thumbnail_url:'poster' }}" alt="{{ car.photo1.name }}">
+            <img class="image" src="{{ car.photo2|thumbnail_url:'poster' }}" alt="{{ car.photo2.name }}">
+        </div>
+        <p class="set">Тип кузова - {{ car.body }}</p>     
+        <p class="set">Количество сидений - {{ car.sits }}</p>
+        <p class="set">Создан в {{ car.created }} году</p>
+        <p class="set">Трансмиссия - {{ car.transmission}}</p>
+        <p class="set">Тип привода - {{ car.drive_type}}</p>
+        <p class="set">Двигатель - {{ car.engine_name}} с объёмом {{ car.engine_volume}} л.</p>
+        <p class="set">Мощьность - {{ car.pover}} с крутящим мементом - {{ car.moment}}</p>
+        <p class="text">{{ car.about }}</p>
+        <p class="com">{{ car.little_more_title }} :</p>
+        <div class="tino">
+            <p><img class="image" src="{{ car.photo3|thumbnail_url:'poster' }}" alt="{{ car.photo3.name }}"></p>
+            <p><img class="image" src="{{ car.photo4|thumbnail_url:'poster' }}" alt="{{ car.photo4.name }}"></p>
+        </div>
+        <p class="text">{{ car.little_more }}</p>
+    </div>
+
+    <div class="comment">
+        {% if request.user.is_authenticated%}
+        <p class="com">Оставить комментарий :</p>
+            <form class="com_form" action="" method="post" enctype="multipart/form-data">
+                <table>
+                    {% csrf_token %}
+                    {{ form | crispy}}
+                </table>
+                <button class="btn" type="submit">Подтвердить</button>
+            </form>
+        {% endif %} 
+        {% if not car.comment_set.all %}
+            <p class="com">Комментариев пока что нет</p>
+        {% else %}
+            <p class="com">Комментрарии :</p>
+            {% for comment in car.comment_set.all %}
+                <p class="set">Заголовок : {{ comment.title }}</p>
+                <p class="text">Текст : {{ comment.text }}</p>
+                <p class="auth">Автор : <img class="avatar" src="{{ comment.author.avatar|thumbnail_url:'avatar' }}" alt="{{ author.avatar.name }}"> {{ comment.author }}</p>
+                <p>
+                    {% if request.user.is_authenticated and user.id == comment.author_id or request.user.is_staff or request.user.is_superuser %}
+                        <a class="com" href="{% url 'comment_edit' comment.id %}"><i class="fa-light fa-pen-to-square"></i></a>
+                        <a class="com" href="{% url 'comment_delete' comment.id %}"><i class="fa-light fa-trash-can"></i></a>
+                    {% endif%}
+                </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}

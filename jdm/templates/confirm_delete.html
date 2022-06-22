@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <style>
+        .del_form {
+            margin: 150px 0 0 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            box-sizing: border-box;}
+        .del_form button {
+            margin: 0 0 10px 10px;}
+    </style>
+
+    <form class="del_form" method="post">
+        {% csrf_token %}
+        <p class="text">Вы уверены, что хотите удалить - {{ object }}? <button class="btn" type="submit">Подтвердить</button></p>
+    </form>
+{% endblock %}

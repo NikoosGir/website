@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+    <style>
+        .login_form {
+            margin-top: 50px;
+            width: 400px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #231F20;
+            background-color: #BCBEC0;
+            border-radius: 5px;}
+    </style>
+
+    <div class="wrapper">
+        <form class="login_form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn" type="submit">Подтвердить</button>
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+    <style>
+        .auth_form {
+            width: 500px;
+            height: 550px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            box-sizing: border-box;
+            border: 3px solid #231F20;
+            align-items: center;
+            border-radius: 5px;
+            background-color: #BCBEC0;
+            margin-bottom: 50px;}
+    </style>
+
+    <div class="wrapper">
+        <form class="auth_form" action="" method="post" enctype="multipart/form-data">
+            <table>
+                {% csrf_token %}
+                {{ form | crispy}}
+            </table>
+            <button class="btn" type="submit">Подтвердить</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block main %}
+    {% if not cars %}
+        <p class="tile">Автомобилей по вашему запросу не найдено, введите другие параметры</p>
+    {% else %}
+        <p class="tile">Найдено элементов - {{count}}</p>
+    
+        <div class="cars">
+            {% for car in cars %}
+            <div>
+                <p class="title">{{ car.created }} {{ car.brand }} {{ car.model }} ({{ car.engine_name }}) <a class="icon" href='{% url "car_details" car.id %}'><i class="fa-thin fa-circle-info"></i></a></p>
+                <p><img class="image" class="image" src="{{ car.photo1|thumbnail_url:'poster' }}" alt="{{ car.photo1.name }}"></p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

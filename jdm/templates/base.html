@@ -1,0 +1,499 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">   
+    <title>{{title}}</title>
+</head>
+<body>
+  
+    <style>
+        * {
+            padding: 0;
+            margin: 0;}
+        body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #D1D3D4;}
+        header {
+            width: 100%;
+            height: 120px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgb(255,164,241);
+            background: linear-gradient(90deg, rgba(255,164,241,1) 0%, rgba(255,161,241,1) 50%, rgba(241,180,255,1) 100%);
+            position: fixed;}
+        body a:hover {
+            color: rgb(255,164,241);}
+        body a:active{
+            color: #EF2FA2;}
+        header a:hover {
+            color: #EF2FA2;}
+        header a:active{
+            color: #E6E7E8;}
+        .jsmenu {
+            width: 30%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;}
+        .jsSpan {
+            padding: 20px 25px;
+            color: #414042;
+            font-size: 25px;}
+        .menu-content {
+            margin: 200px 0 0 0;
+            width: 150px;
+            border: 3px solid #231F20;
+            background-color: #D1D3D4;
+            display: none;
+            border-radius: 5px;
+            position: absolute;
+            background-color: #f1f1f1;}
+        .menu-content a {
+            color: black;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            display: block;}
+        .menu-content a:hover {
+            color: #F375F3;
+            background-color: #E6E7E8;}
+        .menu-content a:active {
+            color: #EF2FA2;}
+        .show {
+            display:block;}
+        .filter {
+            background-color: #BCBEC0;
+            display: flex;
+            height: 12em;
+            flex-wrap: wrap;
+            align-items: center;} 
+        .filtr-content {
+            margin: 250px 0 0 175px;
+            width: 200px;
+            border: 3px solid #231F20;
+            background-color: #D1D3D4;
+            display: none;
+            border-radius: 5px;
+            position: absolute;
+            background-color: #f1f1f1;}
+        .box1 {
+            height: 75%;
+            width: 100%;
+            padding-top: 5px;
+            display: flex;
+            flex-wrap:wrap;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;}
+        .filter select{
+            font-size: 20px;
+            font-family: Arial, Helvetica;
+            width: 175px;}
+        .box2 {
+            height: 25%;
+            width: 100%;
+            display: flex;
+            flex-wrap:wrap;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;}
+        .jsP {
+            color: #414042;
+            margin-left: 100px;
+            padding: 20px 25px;
+            font-size: 25px;}
+        .filt {
+            display:block;}
+        .search {
+            width: 30%;
+            display: flex;
+            flex-direction: column;}
+        .search1 {
+            display: flex;
+            justify-content: space-around;}
+        .search1 select{
+            font-size: 20px;
+            font-family: Arial, Helvetica;
+            width: 265px;}
+        .search2 {
+            display: flex;
+            justify-content: center;}
+        .search2 input{
+            font-size: 18px;
+            font-family: Arial, Helvetica;}
+        .communic {
+            width: 35%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: end;}
+        .in {
+            width: 200px;
+            height: 25px;
+            border-radius: 7px;
+            padding-left: 10px;
+            margin-top: 10px;}
+        .btn {
+            width: 100px;
+            height: 25px;
+            border-radius: 7px;
+            font-size: 15px;
+            margin: 10px 0;
+            background-color: #E6E7E8;}
+        .bt {
+            width: 40px;
+            height: 27px;
+            border-radius: 7px;
+            font-size: 15px;
+            margin-left: 15px;
+            margin-top: 10px;
+            background-color: #E6E7E8;}
+        .log {
+            text-decoration: none;
+            color: #414042;
+            font-size: 25px;
+            margin: 0 25px;}
+        .base {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;}
+        .img {
+            width: 100%;
+            height: 300px;
+            margin-top: 100px;}
+        .tit {
+            color: #231F20;
+            margin: 25px 0;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .title {
+            color: #231F20;
+            margin: 125px 0 25px 0;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .tile {
+            color: #231F20;
+            margin: 200px 0 0 50px;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .text {
+            color: #231F20;
+            font-size: 20px;
+            font-family: Arial, Helvetica;
+            text-align: justify;
+            margin: 20px 20px;}
+        .auth {
+            display: flex;
+            color: #231F20;
+            font-size: 20px;
+            font-family: Arial, Helvetica;
+            text-align: justify;
+            align-items: center;
+            margin: 20px 20px;}
+        .avatar {
+            margin: 0 20px;
+            border-radius: 100px;}
+        .brands {
+            display: flex;
+            width: 100%;
+            height:10em;
+            flex-wrap:wrap;
+            justify-content: space-around;}
+        .brand {
+            text-align:center;
+            padding: 1.5em;
+            margin-top: 175px;
+            width: 400px;}
+        .logo {
+            width: 100px;
+            height: 100px;} 
+        .cars {
+            display: flex;
+            flex-wrap:wrap;
+            justify-content: space-around;}
+        .car {
+            margin-top: 100px; }
+        .tino {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;}
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            font-size: 20px;
+            margin: 20px 0;
+            justify-content: center;
+            align-items: center;}
+        .current {
+            margin: 5px;
+            color: black;}
+        .st {
+            margin: 5px;
+            color: #6D6E71;
+            text-decoration: none;}
+        .info {
+            color: #231F20;
+            margin-left: 200px;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .com {
+            color: #231F20;
+            margin:25px;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .set {
+            color: #231F20;
+            margin: 15px 0 15px 15px;
+            font-size: 22px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .comment {
+            width: 90%;
+            display: flex;
+            margin: 0 0 25px 25px;
+            flex-direction: column;}
+        i {
+            font-family: fontawesome !important;}
+        .icon {
+            font-family: fontawesome !important;
+            color: #231F20;
+            margin-left: 50px;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .image {
+            border-radius: 10px;}
+        .wrapper {
+            margin-top: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;}
+        input{
+            border-radius: 10px;
+            width: 200px;
+            height: 25px;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 10px 0;
+            padding-left: 10px;}
+        textarea{
+            border-radius: 10px;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 10px 0;
+            padding: 10px 0 0 10px;}
+        .control-label  {
+            color: #231F20;
+            margin-left:20px;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+        .help-block {
+            color: #231F20;
+            margin: 10px 0 10px 0;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;}
+    </style>
+
+    <script>
+        function scriptMenu() {
+            document.getElementById("jsMain").classList.toggle("show");}
+        function scriptFiltr() {
+            document.getElementById("jsFiltr").classList.toggle("filt");}
+            
+        window.onclick = function(event) {
+        if (!event.target.matches('.jsSpan')) {
+            var dropdowns = document.getElementsByClassName("menu-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');}}}}               
+        
+        window.onclick = function(event) {
+        if (!event.target.matches('.jsP')) {
+            var dropdowns = document.getElementsByClassName("filtr-content");
+            var n;
+            for (n = 0; i < dropdowns.length; n++) {
+            var openDropdown = dropdowns[n];
+            if (openDropdown.classList.contains('filt')) {
+                openDropdown.classList.remove('filt');}}}}
+    </script>
+
+    <header>
+        <div class="home">
+            <a class='log' href="{% url 'main'%}"><i class="fa-solid fa-house"></i></a>
+        </div>
+        <div class="jsmenu">
+
+            <a onclick="scriptMenu()" class="jsSpan"><i class="fa-solid fa-bars"></i></a>
+            <div id="jsMain" class="menu-content">
+                <a class='menu' href="{% url 'main'%}">Главная</a>
+                <a class='menu' href="{% url 'brands'%}">Марки</a>
+                <a class='menu' href="{% url 'cars'%}">Авто</a>
+            </div>
+
+            <a onclick="scriptFiltr()" class="jsP"><i class="fa-solid fa-filter"></i></a>
+            <div id="jsFiltr" class="filtr-content">
+            <form class='filter' action="{% url 'filter' %}" method="GET">
+                <div class="box1">
+                    <p><select name="brand_id">
+                        <option selected disabled>Выберите марку</option>
+                        <option value="1">Honda</option>
+                        <option value="2">Nissan</option>
+                        <option value="3">Toyota</option>
+                        <option value="4">Mazda</option>
+                        <option value="5">Mitsubishi</option>
+                        <option value="6">Subaru</option>
+                    </select></p>
+                    <p><select name="drive_type_id">
+                        <option selected disabled>Выберите тип привода</option>
+                        <option value="1">RWD</option>
+                        <option value="2">FWD</option>
+                        <option value="3">4WD</option>
+                        <option value="4">AWD</option>
+                    </select></p>
+                    <p><select name="body_id">
+                        <option selected disabled>Выберите тип кузова</option>
+                        <option value="1">Купе</option>
+                        <option value="2">Седан</option>
+                        <option value="3">Хэтчбек</option>
+                        <option value="4">Кабриолет</option>
+                        <option value="5">Универсал</option>
+                    </select></p>
+                    <p><select name="transmission_id">
+                        <option selected disabled>Выберите коробку передач</option>
+                        <option value="1">Автоматическа КПП</option>
+                        <option value="2">Механическая КПП</option>
+                    </select></p>
+                    <p><select name="created_from">  
+                        <option selected disabled>От</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                        <option value="2000">2000</option>
+                        <option value="1999">1999</option>
+                        <option value="1998">1998</option>
+                        <option value="1997">1997</option>
+                        <option value="1996">1996</option>
+                        <option value="1995">1995</option>
+                        <option value="1994">1994</option>
+                        <option value="1993">1993</option>
+                        <option value="1992">1992</option>
+                        <option value="1991">1991</option>
+                        <option value="1990">1990</option>
+                        <option value="1989">1989</option>
+                        <option value="1988">1988</option>
+                        <option value="1987">1987</option>
+                        <option value="1986">1986</option>
+                        <option value="1985">1985</option>
+                        <option value="1984">1984</option>
+                        <option value="1983">1983</option>
+                    </select></p>
+                    <p><select name="created_to">  
+                        <option selected disabled>До</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                        <option value="2000">2000</option>
+                        <option value="1999">1999</option>
+                        <option value="1998">1998</option>
+                        <option value="1997">1997</option>
+                        <option value="1996">1996</option>
+                        <option value="1995">1995</option>
+                        <option value="1994">1994</option>
+                        <option value="1993">1993</option>
+                        <option value="1992">1992</option>
+                        <option value="1991">1991</option>
+                        <option value="1990">1990</option>
+                        <option value="1989">1989</option>
+                        <option value="1988">1988</option>
+                        <option value="1987">1987</option>
+                        <option value="1986">1986</option>
+                        <option value="1985">1985</option>
+                        <option value="1984">1984</option>
+                        <option value="1983">1983</option>
+                    </select></p>
+                </div>
+                <div class="box2">
+                  <button class="bt" type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
+                </div>
+             </form>
+            </div>
+        </div>
+        
+        
+
+
+        <form  class='search' action="{% url 'search' %}" method="GET">
+            <div class="search1">
+            <p><select name="brand_id">
+                <option selected disabled>Выберите марку</option>
+                <option value="1">Honda</option>
+                <option value="2">Nissan</option>
+                <option value="3">Toyota</option>
+                <option value="4">Mazda</option>
+                <option value="5">Mitsubishi</option>
+                <option value="6">Subaru</option>
+            </select></p>
+        </div>
+        <div class="search2">
+            <input class="in" type="text" placeholder="Введие модель авто" name="q"/>
+            <button class="bt" type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
+        </div>
+        </form>
+
+        <div class="communic">
+            {% if request.user.is_authenticated %} 
+            {% if request.user.is_staff or request.user.is_superuser %}
+                <a class='log' href="{% url 'create_car'%}"><i class="fa-light fa-circle-plus"></i></a>
+            {% endif %}
+                <a class='log' href="{% url 'author_details' request.user.id %}"><i class="fa-solid fa-user"></i></a>
+                <a class='log' href="{% url 'logout' %}"><i class="fa-light fa-arrow-right-from-bracket"></i></a>
+            {% else %}
+                <a class='log' href="{% url 'registration' %}"><i class="fa-light fa-user-plus"></i></a>
+                <a class='log' href="{% url 'login' %}"><i class="fa-light fa-arrow-right-to-bracket"></i></a>
+            {% endif %}
+        </div>
+    </header>
+
+    {% block main %}
+    {% endblock %}
+</body>
+</html>

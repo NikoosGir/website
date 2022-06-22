@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block main %}
+
+    <div class="base">
+        {% for post in posts %}
+            <p><img  class='img'src="{{ post.photo|thumbnail_url:'img' }}" alt="{{ post.photo.name }}"></p>
+            <p class="tit">{{ post.name }}</p>
+            <p class="text">{{ post.content }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

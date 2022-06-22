@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block main %} 
+
+    <div class="cars">
+        {% for car in cars %}
+        <div class="car">
+            <p class="title">{{ car.created }} {{ car.brand }} {{ car.model }} ({{ car.engine_name }}) <a class="icon" href='{% url "car_details" car.id %}'><i class="fa-thin fa-circle-info"></i></a></p>
+            <p><img class="image" src="{{ car.photo1|thumbnail_url:'poster' }}" alt="{{ car.photo1.name }}"></p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a class="st" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        {% endif %}
+        {% for p in paginator.page_range %}
+            <div class="pg">
+                {% if page_obj.number == p %}
+                    <a class="current">{{ p }}</a>
+                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                    <a class='st' href="?page={{ p }}">{{ p }}</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a class="st" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
