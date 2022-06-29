@@ -9,7 +9,7 @@
     
     <div class="cars">
         {% for car in cars %}
-        <div class="car">
+        <div>
             <p class="title">{{ car.created }} {{ car.brand }} {{ car.model }} ({{ car.engine_name }}) <a class="icon" href='{% url "car_details" car.id %}'><i class="fa-thin fa-circle-info"></i></a></p>
             <p><img class="image" src="{{ car.photo1|thumbnail_url:'poster' }}" alt="{{ car.photo1.name }}"></p>
         </div>
