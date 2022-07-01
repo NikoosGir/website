@@ -5,8 +5,8 @@
     <div class="brands">
         {% for brand in brands %}
         <div class="brand">
-            <p><img  class='logo'src="{{ brand.photo|thumbnail_url:'logo' }}" alt="{{ brand.photo.name }}"></p>
-            <a class="title" href="{% url 'brand_details' brand.id %}">{{ brand.name }}</a>
+            <a href="{% url 'brand_details' brand.id %}"><img  class='logo' src="{{ brand.photo|thumbnail_url:'logo' }}" alt="{{ brand.photo.name }}"></a>
+            <a class="t" href="{% url 'brand_details' brand.id %}">{{ brand.name }}</a>
         </div>
         {% endfor %}
     </div>
